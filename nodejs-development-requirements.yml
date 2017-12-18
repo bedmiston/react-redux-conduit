@@ -1,0 +1,5 @@
+---
+# - src: fubarhouse.nodejs
+- src: geerlingguy.repo-epel
+- src: geerlingguy.nodejs
+
