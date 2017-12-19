@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div>
         <Header appName={this.props.appName} />
-        <Home />
+        {this.props.children}
       </div>
     );
   }
