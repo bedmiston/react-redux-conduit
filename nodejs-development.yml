@@ -4,11 +4,6 @@
   become: yes
   become_user: root
 
-  vars:
-    - nodejs_version: "9_3"
-    - nodejs_npm_global_packages:
-      - name: jslint
-
   roles:
     - geerlingguy.repo-epel
 
