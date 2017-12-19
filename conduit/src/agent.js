@@ -9,7 +9,9 @@ const responseBody = res => res.body;
 
 const requests = {
   get: url =>
-    superagent.get(`${API_ROOT}${url}`).then(responseBody)
+    superagent
+      .get(`${API_ROOT}${url}`)
+      .then(responseBody)
 };
 
 const Articles = {
