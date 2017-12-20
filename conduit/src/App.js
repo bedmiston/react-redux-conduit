@@ -5,7 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-  appName: state.appName
+  appName: state.common.appName
 });
 
 class App extends React.Component {
@@ -18,5 +18,9 @@ class App extends React.Component {
     );
   }
 }
+
+App.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, () => ({}))(App);
