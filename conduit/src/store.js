@@ -4,11 +4,6 @@ import auth from './reducers/auth';
 import common from './reducers/common';
 import home from './reducers/home';
 
-const defaultState = {
-  appName: 'conduit',
-  articles: null
-};
-
 const reducer = combineReducers({
   auth,
   common,
