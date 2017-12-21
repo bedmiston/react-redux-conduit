@@ -29,8 +29,15 @@ const requests = {
 
 const Articles = {
   all: page =>
-    requests.get(`/articles?limit=10`)
+    requests.get(`/articles?limit=10`),
+  get: slug =>
+    requests.get(`/articles/${slug}`)
 };
+
+const Comments = {
+  forArticle: slug =>
+    requests.get(`/articles/${slug}/comments`)
+}
 
 const Auth = {
   current: () =>
@@ -46,5 +53,6 @@ const Auth = {
 export default {
   Articles,
   Auth,
+  Comments,
   setToken: _token => { token = _token; }
 }
