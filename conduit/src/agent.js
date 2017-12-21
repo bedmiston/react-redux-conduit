@@ -24,19 +24,31 @@ const requests = {
     superagent
       .post(`${API_ROOT}${url}`, body)
       .use(tokenPlugin)
-      .then(responseBody)
+      .then(responseBody),
+  del: url =>
+    superagent
+      .del(`${API_ROOT}${url}`)
+      .use(tokenPlugin)
+      .then(responseBody),
+  put: (url, body) =>
+    superagent
+      .del(`${API_ROOT}${url}`, body)
+      .use(tokenPlugin)
+      .then(responseBody),
 };
 
 const Articles = {
   all: page =>
     requests.get(`/articles?limit=10`),
   get: slug =>
-    requests.get(`/articles/${slug}`)
+    requests.get(`/articles/${slug}`),
+  del: slug =>
+    requests.del(`/articles/${slug}`)
 };
 
 const Comments = {
   forArticle: slug =>
-    requests.get(`/articles/${slug}/comments`)
+    requests.get(`/ articles / ${slug} / comments`)
 }
 
 const Auth = {
