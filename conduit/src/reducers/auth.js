@@ -11,7 +11,7 @@ export default (state = {}, action) => {
         return { ...state, inProgress: true };
       }
       return state;
-    case 'UPDATE_AUTH_FIELD':
+    case 'UPDATE_FIELD_AUTH':
       return { ...state, [action.key]: action.value };
     default:
       return state;
