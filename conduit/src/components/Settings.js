@@ -25,13 +25,13 @@ class SettingsForm extends React.Component {
       bio: '',
       email: '',
       password: ''
-    }
+    };
 
     this.updateState = field => ev => {
       const state = this.state;
       const newState = Object.assign({}, state, { [field]: ev.target.value });
       this.setState(newState);
-    }
+    };
 
     this.submitForm = ev => {
       ev.preventDefault();
@@ -42,7 +42,7 @@ class SettingsForm extends React.Component {
       }
 
       this.props.onSubmitForm(user);
-    }
+    };
   }
 
   componentWillMount() {
@@ -56,14 +56,14 @@ class SettingsForm extends React.Component {
     }
   }
 
-  componentWillReceiveProps = (nextProps) => {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser) {
       this.setState(Object.assign({}, this.state, {
         image: nextProps.currentUser.image || '',
         username: nextProps.currentUser.username,
         bio: nextProps.currentUser.bio,
         email: nextProps.currentUser.email
-      }))
+      }));
     }
   }
 
