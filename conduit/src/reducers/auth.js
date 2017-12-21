@@ -10,7 +10,7 @@ export default (state = {}, action) => {
       if (action.subtype === 'LOGIN' || action.subtype === 'REGISTER') {
         return { ...state, inProgress: true };
       }
-      break;
+      return state;
     case 'UPDATE_AUTH_FIELD':
       return { ...state, [action.key]: action.value };
     default:
