@@ -26,3 +26,12 @@
         state: present
       with_items:
         - create-react-app
+  
+- hosts: all
+  gather_facts: yes
+  become: yes
+  become_user: root
+
+  roles:
+    - ocha.yarn
+    
