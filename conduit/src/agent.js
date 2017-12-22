@@ -32,7 +32,7 @@ const requests = {
       .then(responseBody),
   put: (url, body) =>
     superagent
-      .del(`${API_ROOT}${url}`, body)
+      .put(`${API_ROOT}${url}`, body)
       .use(tokenPlugin)
       .then(responseBody),
 };
@@ -48,7 +48,7 @@ const Articles = {
 
 const Comments = {
   forArticle: slug =>
-    requests.get(`/ articles / ${slug} / comments`)
+    requests.get(`/articles/${slug}/comments`)
 }
 
 const Auth = {
