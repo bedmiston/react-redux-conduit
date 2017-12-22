@@ -1,6 +1,6 @@
 import ArticleMeta from './ArticleMeta';
 // import CommentContainer from './CommentContainer';
-import { Link, Lifecycle } from 'react-router';
+// import { Link, Lifecycle } from 'react-router';
 import React from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
