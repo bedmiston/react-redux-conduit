@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 const mapStateToProps = (state) => ({
   ...state.settings,
   currentUser: state.common.currentUser
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   onClickLogout: () => dispatch({ type: 'LOGOUT' }),
@@ -47,7 +47,7 @@ class SettingsForm extends React.Component {
 
   componentWillMount() {
     if (this.props.currentUser) {
-      Object.assign(this.state, {
+      Object.assign({}, this.state, {
         image: this.props.currentUser.image || '',
         username: this.props.currentUser.username,
         bio: this.props.currentUser.bio,
