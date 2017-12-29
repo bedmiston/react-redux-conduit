@@ -11,6 +11,8 @@ export default (state = {}, action) => {
         ...state,
         inProgress: true
       };
+    case 'SETTINGS_PAGE_UNLOADED':
+      return {};
     default:
       return state;
   }

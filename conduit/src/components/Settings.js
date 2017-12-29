@@ -12,7 +12,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   onClickLogout: () => dispatch({ type: 'LOGOUT' }),
   onSubmitForm: user =>
-    dispatch({ type: 'SETTINGS_SAVED', payload: agent.Auth.save(user) })
+    dispatch({ type: 'SETTINGS_SAVED', payload: agent.Auth.save(user) }),
+  onUnload: () => dispatch({ type: 'SETTINGS_PAGE_UNLOADED' })
 });
 
 class SettingsForm extends React.Component {
@@ -65,6 +66,10 @@ class SettingsForm extends React.Component {
         email: nextProps.currentUser.email
       }));
     }
+  }
+
+  componentWillUnmount = () => {
+    this.props.onUnload();
   }
 
   render() {
