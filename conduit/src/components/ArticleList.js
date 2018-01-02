@@ -1,4 +1,4 @@
-import ArticelPreview from './ArticlePreview'
+import ArticlePreview from './ArticlePreview'
 import React from 'react'
 
 const ArticleList = (props) => {
@@ -21,7 +21,7 @@ const ArticleList = (props) => {
       {
         props.articles.map(article => {
           return (
-            <ArticelPreview article={article} key={article.slug} />
+            <ArticlePreview article={article} key={article.slug} />
           );
         })
       }

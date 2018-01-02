@@ -75,7 +75,7 @@ class Profile extends React.Component {
             <div className="row">
               <div className="col-xs-12 col-md-10 offset-md-1">
 
-                <img src={profile.image} className="user-img" />
+                <img src={profile.image} alt="Profile" className="user-img" />
                 <h4>{profile.username}</h4>
                 <p>{profile.bio}</p>
 
@@ -159,4 +159,4 @@ const FollowUserButton = props => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
-export { Profile as Profile, mapStateToProps as mapStateToProps };
+export { Profile, mapStateToProps };

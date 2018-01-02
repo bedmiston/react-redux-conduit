@@ -45,7 +45,9 @@ const Articles = {
   del: slug =>
     requests.del(`/articles/${slug}`),
   byAuthor: (author, page) =>
-    requests.get(`/articles?author=${encodeURIComponent(author)}&limit=5`)
+    requests.get(`/articles?author=${encodeURIComponent(author)}&limit=5`),
+  favoritedBy: (author, page) =>
+    requests.get(`/articles?favorited=${encodeURIComponent(author)}&limit=5`)
 };
 
 const Comments = {
