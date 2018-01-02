@@ -5,18 +5,30 @@ import agent from '../../agent';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({
-  appName: state.common.appName
+  appName: state.common.appName,
+  token: state.common.token
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onLoad: (payload) =>
     dispatch({ type: 'HOME_PAGE_LOADED', payload }),
+  onUnload: () =>
+    dispatch({ type: 'HOME_PAGE_UNLOADED' })
 });
 
 
 class Home extends Component {
   componentWillMount() {
-    this.props.onLoad(agent.Articles.all());
+    const tab = this.props.token ? 'feed' : 'all';
+    const articlesPromise = this.props.token ?
+      agent.Articles.feed() :
+      agent.Articles.all();
+
+    this.props.onLoad(articlesPromise);
+  }
+
+  componentWillUnmount() {
+    this.props.onUnload();
   }
 
   render() {
