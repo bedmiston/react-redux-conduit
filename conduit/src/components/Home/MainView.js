@@ -56,7 +56,7 @@ const TagFilterTab = props => {
   }
 
   return (
-    <li className="cav-item">
+    <li className="nav-item">
       <a href="" className="nav-link active">
         <i className="ion-pound"></i> {props.tag}
       </a>
