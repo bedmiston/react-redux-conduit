@@ -1,6 +1,6 @@
-import ArticleList from '../ArticleList'
-import React from 'react'
-import { connect } from 'react-redux'
+import ArticleList from '../ArticleList';
+import React from 'react';
+import { connect } from 'react-redux';
 import agent from '../../agent';
 
 const YourFeedTab = props => {
@@ -26,7 +26,7 @@ const YourFeedTab = props => {
 const GlobalFeedTab = props => {
   const clickHandler = ev => {
     ev.preventDefault();
-    props.onTabClick('all', agent.Articles.feed());
+    props.onTabClick('all', agent.Articles.all());
   };
 
   return (
