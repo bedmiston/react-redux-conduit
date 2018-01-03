@@ -21,7 +21,8 @@ export default (state = {}, action) => {
         ...state,
         articles: action.payload.articles,
         articlesCount: action.payload.articlesCount,
-        tab: action.tab
+        tab: action.tab,
+        tag: null
       };
     case 'APPLY_TAG_FILTER':
       return {
