@@ -20,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
     type: 'UNFOLLOW_USER',
     payload: agent.Profile.unfollow(username)
   }),
-  onUnload: () => dispatch({ type: 'PROFILE_PAGE_UNLOADED' })
+  onUnload: () => dispatch({ type: 'PROFILE_PAGE_UNLOADED' }),
+  onSetPage: (page, payload) => dispatch({ type: 'SET_PAGE', page, payload })
 });
 
 class Profile extends React.Component {
@@ -34,6 +35,11 @@ class Profile extends React.Component {
 
   componentWillUnmount = () => {
     this.props.onUnload();
+  }
+
+  onSetPage(page) {
+    const promise = agent.Articles.byAuthor(this.props.profile.username, page);
+    this.props.onSetPage(page, promise);
   }
 
   renderTabs() {
@@ -67,6 +73,8 @@ class Profile extends React.Component {
     const isUser = this.props.currentUser &&
       this.props.profile.username === this.props.currentUser.username;
 
+    const onSetPage = page => this.onSetPage(page);
+
     return (
       <div className="profile-page">
 
@@ -75,7 +83,7 @@ class Profile extends React.Component {
             <div className="row">
               <div className="col-xs-12 col-md-10 offset-md-1">
 
-                <img src={profile.image} alt="Profile" className="user-img" />
+                <img src={profile.image} alt="user" className="user-img" />
                 <h4>{profile.username}</h4>
                 <p>{profile.bio}</p>
 
@@ -102,7 +110,10 @@ class Profile extends React.Component {
               </div>
 
               <ArticleList
-                articles={this.props.articles} />
+                articles={this.props.articles}
+                articlesCount={this.props.articlesCount}
+                currentPage={this.props.currentPage}
+                onSetPage={onSetPage} />
             </div>
 
           </div>
