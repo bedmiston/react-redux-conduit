@@ -39,6 +39,7 @@ const requests = {
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 const encode = encodeURIComponent;
+const omitSlug = article => Object.assign({}, article, { slug: undefined });
 const Articles = {
   all: page =>
     requests.get(`/articles?${limit(10, page)}`),
@@ -53,7 +54,11 @@ const Articles = {
   favoritedBy: (author, page) =>
     requests.get(`/articles?favorited=${encode(author)}&${limit(10, page)}`),
   feed: (page) =>
-    requests.get(`/articles/feed?${limit(10, page)}`)
+    requests.get(`/articles/feed?${limit(10, page)}`),
+  update: (article) =>
+    requests.put(`/articles/${article.slug}`, { article: omitSlug(article) }),
+  create: (article) =>
+    requests.post(`/articles`, { article })
 };
 
 const Comments = {

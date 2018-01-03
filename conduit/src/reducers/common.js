@@ -21,6 +21,12 @@ export default (state = defaultState, action) => {
         token: null,
         currentUser: null
       };
+    case 'ARTICLE_SUBMITTED':
+      const redirectURL = `article/${action.payload.article.slug}`;
+      return {
+        ...state,
+        redirectTo: redirectURL
+      };
     case 'SETTINGS_SAVED':
       return {
         ...state,

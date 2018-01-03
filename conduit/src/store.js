@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { promiseMiddleware, localStorageMiddleware } from './middleware';
 import auth from './reducers/auth';
 import common from './reducers/common';
+import editor from './reducers/editor';
 import home from './reducers/home';
 import settings from './reducers/settings';
 import article from './reducers/article';
@@ -14,6 +15,7 @@ const reducer = combineReducers({
   articleList,
   auth,
   common,
+  editor,
   home,
   profile,
   settings
