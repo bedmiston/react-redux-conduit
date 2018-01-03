@@ -16,8 +16,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onClickTag: (tag, payload) =>
     dispatch({ type: 'APPLY_TAG_FILTER', tag, payload }),
-  onLoad: (tag, payload) =>
-    dispatch({ type: 'HOME_PAGE_LOADED', tag, payload }),
+  onLoad: (tab, payload) =>
+    dispatch({ type: 'HOME_PAGE_LOADED', tab, payload }),
   onUnload: () =>
     dispatch({ type: 'HOME_PAGE_UNLOADED' })
 });
@@ -40,14 +40,17 @@ class Home extends Component {
   render() {
     return (
       <div className="home-page">
-        <Banner appName={this.props.appName} />
+
+        <Banner token={this.props.token} appName={this.props.appName} />
+
         <div className="container page">
           <div className="row">
             <MainView />
+
             <div className="col-md-3">
               <div className="sidebar">
-                <p>Popular Tags</p>
 
+                <p>Popular Tags</p>
                 <Tags
                   tags={this.props.tags}
                   onClickTag={this.props.onClickTag} />
@@ -56,6 +59,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
+
       </div>
     );
   }
