@@ -1,11 +1,12 @@
-import { applyMiddleware, createStore, combineReducers } from 'redux'
+import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { promiseMiddleware, localStorageMiddleware } from './middleware';
 import auth from './reducers/auth';
 import common from './reducers/common';
 import home from './reducers/home';
 import settings from './reducers/settings';
 import article from './reducers/article';
-import articleList from './reducers/articleList'
+import articleList from './reducers/articleList';
 import profile from './reducers/profile';
 
 const reducer = combineReducers({
@@ -19,6 +20,6 @@ const reducer = combineReducers({
 });
 
 const middleware = applyMiddleware(promiseMiddleware, localStorageMiddleware);
-const store = createStore(reducer, middleware);
+const store = createStore(reducer, composeWithDevTools(middleware));
 
 export default store;
