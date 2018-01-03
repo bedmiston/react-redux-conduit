@@ -50,6 +50,20 @@ const mapDispatchToProps = dispatch => ({
   onTabClick: (tab, payload) => dispatch({ type: 'CHANGE_TAB', tab, payload })
 });
 
+const TagFilterTab = props => {
+  if (!props.tag) {
+    return null;
+  }
+
+  return (
+    <li className="cav-item">
+      <a href="" className="nav-link active">
+        <i className="ion-pound"></i> {props.tag}
+      </a>
+    </li>
+  );
+};
+
 const MainView = (props) => {
   return (
     <div className="col-md-9">
@@ -61,6 +75,8 @@ const MainView = (props) => {
             onTabClick={props.onTabClick} />
 
           <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
+
+          <TagFilterTab tag={props.tag} />
         </ul>
       </div>
 

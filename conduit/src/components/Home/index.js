@@ -3,15 +3,21 @@ import MainView from './MainView';
 import React, { Component } from 'react';
 import agent from '../../agent';
 import { connect } from 'react-redux';
+import Tags from './Tags';
+
+const Promise = global.Promise;
 
 const mapStateToProps = (state) => ({
+  ...state.home,
   appName: state.common.appName,
   token: state.common.token
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoad: (payload) =>
-    dispatch({ type: 'HOME_PAGE_LOADED', payload }),
+  onClickTag: (tag, payload) =>
+    dispatch({ type: 'APPLY_TAG_FILTER', tag, payload }),
+  onLoad: (tag, payload) =>
+    dispatch({ type: 'HOME_PAGE_LOADED', tag, payload }),
   onUnload: () =>
     dispatch({ type: 'HOME_PAGE_UNLOADED' })
 });
@@ -24,7 +30,7 @@ class Home extends Component {
       agent.Articles.feed() :
       agent.Articles.all();
 
-    this.props.onLoad(articlesPromise);
+    this.props.onLoad(tab, Promise.all([agent.Tags.getAll(), articlesPromise]));
   }
 
   componentWillUnmount() {
@@ -41,6 +47,11 @@ class Home extends Component {
             <div className="col-md-3">
               <div className="sidebar">
                 <p>Popular Tags</p>
+
+                <Tags
+                  tags={this.props.tags}
+                  onClickTag={this.props.onClickTag} />
+
               </div>
             </div>
           </div>
