@@ -9,11 +9,31 @@ var UserSchema = new mongoose.Schema({
   email: { type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
   bio: String,
   image: String,
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }],
   hash: String,
   salt: String
 }, { timestamps: true });
 
 UserSchema.plugin(uniqueValidator, { message: 'is already taken.' });
+
+UserSchema.methods.favorite = function (id) {
+  if (this.favorites.indexOf(id) === -1) {
+    this.favorites.push(id);
+  }
+
+  return this.save();
+};
+
+UserSchema.methods.unfavorite = function (id) {
+  this.favorites.remove(id);
+  return this.save();
+};
+
+UserSchema.methods.isFavorite = function (id) {
+  return this.favorites.some(function (favoriteId) {
+    return favoriteId.toString() === id.toString();
+  });
+};
 
 UserSchema.methods.setPassword = function (password) {
   this.salt = crypto.randomBytes(16).toString('hex');
