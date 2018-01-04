@@ -6,6 +6,7 @@
 
   vars:
     mongodb_version: "3.4"
+    mongodb_net_bindip: 0.0.0.0
 
   roles:
     - geerlingguy.repo-epel
@@ -35,13 +36,6 @@
       with_items:
         - create-react-app
         - nodemon
-
-    - name: Open firewall for Mongo
-      firewalld:
-        port: 27017/tcp
-        permanent: true
-        state: enabled
-
   
 - hosts: all
   gather_facts: yes
