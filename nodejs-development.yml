@@ -4,8 +4,12 @@
   become: yes
   become_user: root
 
+  vars:
+    mongodb_version: "3.4"
+
   roles:
     - geerlingguy.repo-epel
+    - greendayonfire.mongodb
 
   tasks:
     - name: download node script
@@ -16,8 +20,12 @@
 
     - name: Install nodejs package
       yum:
-        name: nodejs
+        name: "{{ item }}"
         state: present
+      with_items:
+        - nodejs
+        - net-tools
+        - telnet
 
     - name: Install npm global modules
       npm:
@@ -26,6 +34,14 @@
         state: present
       with_items:
         - create-react-app
+        - nodemon
+
+    - name: Open firewall for Mongo
+      firewalld:
+        port: 27017/tcp
+        permanent: true
+        state: enabled
+
   
 - hosts: all
   gather_facts: yes

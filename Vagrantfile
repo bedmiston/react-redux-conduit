@@ -14,10 +14,4 @@ Vagrant.configure(2) do |config|
       ansible.playbook = 'nodejs-development.yml'
       ansible.galaxy_role_file = 'nodejs-development-requirements.yml'
     end
-
-    config.vm.provision :docker do |d|
-    #   d.pull_images "mongo"
-      d.run "mongo",
-        daemonize: true
-    end
   end
